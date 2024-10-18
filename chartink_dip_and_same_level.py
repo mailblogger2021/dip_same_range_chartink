@@ -89,6 +89,9 @@ def append_to_excel(df_list,extra_details,excel_file='chartink_data.xlsx',alert_
     fiscal_week_number = iso_calendar[1]
     fiscal_day_number = iso_calendar[2]
 
+    if(fiscal_day_number>5):
+        return None,None 
+        
     previous_week_date = current_time - datetime.timedelta(weeks=1)
     # Get the ISO calendar details
     previous_iso_calendar = previous_week_date.isocalendar()
@@ -174,8 +177,8 @@ def create_alert_excel_file(extra_details,excel_file='chartink_data.xlsx',alert_
     fiscal_week_number = iso_calendar[1]
     fiscal_day_number = iso_calendar[2]
 
-    # if(fiscal_day_number>=5):
-        # return None,None # friday and weekend
+    if(fiscal_day_number>5):
+        return None,None # friday and weekend
 
     previous_week_date = current_time - datetime.timedelta(weeks=1)
     # Get the ISO calendar details
