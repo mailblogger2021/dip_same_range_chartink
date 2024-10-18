@@ -290,10 +290,11 @@ if __name__ =="__main__":
     date_time = current_time.strftime("%Y_%m_%d.%H_%M_%S")
     os.makedirs(f"report/same_level/pdf/", exist_ok=True)
     os.makedirs(f"report/same_level/excel/", exist_ok=True)
+    os.makedirs(f"report/same_level/alert/", exist_ok=True)
 
     pdf_name = f"report/same_level/pdf/same_level_chartink_{date_time}"
     excel_file_name = f"report/same_level/excel/same_level.xlsx"
-    alert_excel_file = f"report/same_level/same_level_alert_{date_time}.xlsx"
+    alert_excel_file = f"report/same_level/alert/same_level_alert_{date_time}.xlsx"
 
     base_code_list, title_list, time_frame_list = [], [], []
     extra_details = {}
@@ -349,10 +350,11 @@ if __name__ =="__main__":
     date_time = current_time.strftime("%Y_%m_%d.%H_%M_%S")
     os.makedirs(f"report/dip/pdf/", exist_ok=True)
     os.makedirs(f"report/dip/excel/", exist_ok=True)
+    os.makedirs(f"report/dip/alert/", exist_ok=True)
 
     pdf_name = f"report/dip/pdf/dip_chartink_{date_time}"
     excel_file_name = f"report/dip/excel/dip.xlsx"
-    alert_excel_file = f"report/dip/dip_alert_{date_time}.xlsx"
+    alert_excel_file = f"report/dip/alert/dip_alert_{date_time}.xlsx"
 
     base_code_list, title_list, time_frame_list = [], [], []
     extra_details = {}
@@ -412,10 +414,11 @@ if __name__ =="__main__":
     # date_time = current_time.strftime("%Y_%m_%d.%H_%M_%S")
     # os.makedirs(f"report/history_dip/pdf/", exist_ok=True)
     # os.makedirs(f"report/history_dip/excel/", exist_ok=True)
+    # os.makedirs(f"report/history_dip/alert/", exist_ok=True)
 
     # pdf_name = f"report/history_dip/pdf/history_dip_chartink_{date_time}"
-    # excel_file_name = f"report/history_dip/history_dip.xlsx"
-    # alert_excel_file = f"report/history_dip/excel/dip_alert_{date_time}.xlsx"
+    # excel_file_name = f"report/history_dip/excel/history_dip.xlsx"
+    # alert_excel_file = f"report/history_dip/alert/history_dip_alert_{date_time}.xlsx"
 
 
     # base_code_list, title_list, time_frame_list = [], [], []
