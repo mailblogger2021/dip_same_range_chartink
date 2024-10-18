@@ -5,11 +5,11 @@ import logging
 import os
 
 def send_message_with_documents(message="", document_paths=[],captions=[]):
-    # bot_token = '6511501073:AAHbWvFY_dKcUQfKNGFODOeYK8PEUJ4vXPI'
-    # chat_id = -4254539095
+    bot_token = '6511501073:AAHbWvFY_dKcUQfKNGFODOeYK8PEUJ4vXPI'
+    chat_id = -1002239276104
     print("telegram message")
-    bot_token = os.environ["BOT_TOKEN"]
-    chat_id = os.environ["CHAT_ID"]
+    # bot_token = os.environ["BOT_TOKEN"]
+    # chat_id = os.environ["CHAT_ID"]
 
     if message:
         url = f'https://api.telegram.org/bot{bot_token}/sendMessage'
