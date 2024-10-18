@@ -1,0 +1,57 @@
+name: chartink_dip_and_same_level
+permissions: write-all
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: 0 19 * * *   #daily 5PM
+    # - cron: 0 19 * * 2,5   #hour
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout repo content
+      uses: actions/checkout@v2
+
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install Python packages
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Check commit message
+      id: commit_message_check
+      run: echo "COMMIT_MESSAGE=$(git log -1 --pretty=%B)" >> $GITHUB_ENV
+
+    - name: Execute Python script
+      # if: github.event_name == 'schedule' || (github.event_name == 'push' && ((contains(env.COMMIT_MESSAGE, '60m') && contains(env.COMMIT_MESSAGE, 'run')) || contains(env.COMMIT_MESSAGE, 'all')))
+      env:
+        BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+        CHAT_ID: ${{ secrets.CHAT_ID }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: python chartink_dip_and_same_level.py
+
+    - name: Commit files
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add -A
+        git diff-index --quiet HEAD || git commit -m "chartink_dip_and_same_level.yaml completed" --allow-empty
+
+    - name: Fetch changes
+      run: git fetch origin
+
+    - name: Merge changes
+      run: git merge origin/main
+
+    - name: Push changes
+      run: |
+        git push https://github.com/mailblogger2021/dip_same_range_chartink.git main
