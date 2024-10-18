@@ -34,8 +34,8 @@ jobs:
     - name: Execute Python script
       # if: github.event_name == 'schedule' || (github.event_name == 'push' && ((contains(env.COMMIT_MESSAGE, '60m') && contains(env.COMMIT_MESSAGE, 'run')) || contains(env.COMMIT_MESSAGE, 'all')))
       env:
-        BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
-        CHAT_ID: ${{ secrets.CHAT_ID }}
+        BOT_TOKEN: ${{ secrets.trend_line_alert }}
+        CHAT_ID: ${{ secrets.dip_and_same_telegram_id }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: python chartink_dip_and_same_level.py
 
