@@ -6,7 +6,7 @@ import os
 
 def send_message_with_documents(message="", document_paths=[],captions=[]):
     bot_token = '6511501073:AAHbWvFY_dKcUQfKNGFODOeYK8PEUJ4vXPI'
-    chat_id = -1004562890512
+    chat_id = -1002325420493
     print("telegram message")
     # bot_token = os.environ["BOT_TOKEN"]
     # chat_id = os.environ["CHAT_ID"]
