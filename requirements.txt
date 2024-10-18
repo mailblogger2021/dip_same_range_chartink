@@ -4,3 +4,4 @@ pandas
 fpdf
 lxml
 openpyxl
+urllib
