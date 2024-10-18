@@ -202,7 +202,7 @@ def create_alert_excel_file(extra_details,excel_file='chartink_data.xlsx',alert_
     # self_joined_df = self_joined_df.groupby('nsecode', as_index=False).agg(lambda x: ', '.join(map(str, x.unique())))
     
     unique_nse_codes = self_joined_df['nsecode'].unique()
-    message = ', '.join(unique_nse_codes)
+    message = ',%0A'.join(unique_nse_codes)
     telegram_message_send.send_message_with_documents(message)
 
     selected_columns = self_joined_df.filter(regex='_current$', axis=1).columns.tolist()
