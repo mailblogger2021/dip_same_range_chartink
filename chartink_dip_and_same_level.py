@@ -453,3 +453,70 @@ if __name__ =="__main__":
     # ph_pl_list, df_list = generate_chartink_code(time_frame_list,base_code_list,title_list,pdf_name)
     # merged_df = append_to_excel(df_list,extra_details, excel_file=excel_file_name,alert_excel_file=alert_excel_file)
     # self_joined_df,self_joined_df_current = create_alert_excel_file(extra_details, excel_file=excel_file_name,alert_excel_file=alert_excel_file)
+    
+    index_details = {
+        "NIFTY 50" : "33492",
+        # "NIFTY 100": "33619",
+        # "NIFTY NEXT 50" : "1116352",
+        # "NIFTY 200": "46553",
+        # "MIDCAP 50" : "136492",
+        # "MIDCAP 100" : "1090585",
+        # "MIDCAP 150" : "1090588",
+        # "MIDCAP SELECT" : "1090579",
+        # "NIFTY 500" : "57960",
+        # "NIFTY 500 multicap50:25:25" : "1090574",
+        # "NIFTY 500 multicap50:25:25" : "1090574",
+        "SMALLCAP 50" : "1090568",
+        # "SMALLCAP 100" : "1090587",
+        # "SMALLCAP 250" : "1090572",
+    }
+    
+    week_count_list = {
+        # "52":0.50,
+        # "35":0.60,
+        "26":0.70,
+        # "8":0.80
+    }
+    max_week_count = 300 # 4 years
+    
+    month_count_list = {}
+    max_month_count = 300
+    
+    year_count_list = {}
+    max_year_count = 10
+    
+    dip_rsi_chartink = {
+        "{index_name}_rsi":'( {{{index}}} ( monthly rsi( 2 ) <= 11 ) ) '
+        }
+    
+    current_time = datetime.datetime.now()
+    date_time = current_time.strftime("%Y_%m_%d.%H_%M_%S")
+    os.makedirs(f"report/rsi_history_dip/pdf/", exist_ok=True)
+    os.makedirs(f"report/rsi_history_dip/excel/", exist_ok=True)
+    os.makedirs(f"report/rsi_history_dip/alert/", exist_ok=True)
+    
+    pdf_name = f"report/rsi_history_dip/pdf/rsi_history_dip_chartink_{date_time}"
+    excel_file_name = f"report/rsi_history_dip/excel/rsi_history_dip.xlsx"
+    alert_excel_file = f"report/rsi_history_dip/alert/history_dip_alert_{date_time}.xlsx"
+    
+    
+    base_code_list, title_list, time_frame_list = [], [], []
+    extra_details = {}
+    
+    for index_name in index_details:
+        index = index_details[index_name]
+        for chartink_title in dip_rsi_chartink:
+            base_code = dip_rsi_chartink[chartink_title].format(index=index)
+            time_frame_list.append(f"{index_name}_rsi")
+            extra_details[time_frame_list[-1]] = {
+                "index":index_name,
+                "time_frame":"month",
+                "before_month":0,
+                "find_stock_history_month" : 0
+                }
+            base_code_list.append(base_code)
+            title_list.append(chartink_title.format(index_name=index_name))
+    
+    ph_pl_list, df_list = generate_chartink_code(time_frame_list,base_code_list,title_list,pdf_name)
+    merged_df = append_to_excel(df_list,extra_details, excel_file=excel_file_name,alert_excel_file=alert_excel_file)
+    self_joined_df,self_joined_df_current = create_alert_excel_file(extra_details, excel_file=excel_file_name,alert_excel_file=alert_excel_file)
