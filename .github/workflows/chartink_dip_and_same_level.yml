@@ -6,10 +6,8 @@ on:
     branches:
       - main
   schedule:
-    - cron: 0 19 * * *   #daily 5PM
-    # - cron: 0 19 * * 2,5   #hour
-    - cron: '30 11 * * *'   # Runs daily at 7:00 PM IST
-    - cron: '34 15 * * *'   # Runs daily at 9:00 PM IST
+    - cron: '30 12 * * *'   # Runs daily at 7:00 PM IST
+    # - cron: '30 15 * * *'   # Runs daily at 9:00 PM IST
 
 jobs:
   build:
