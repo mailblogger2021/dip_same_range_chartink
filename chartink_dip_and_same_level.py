@@ -369,7 +369,7 @@ if __name__ =="__main__":
         # index = index_details[index_name]
         index = index_details[index_name][0]
         # for week_count, percentage in week_count_list.items():
-        for week_count,percentage in index_details[index_name][0].items():
+        for week_count,percentage in index_details[index_name][1].items():
             for chartink_title in drop_some_percentage_from_with_in_year:
                 base_code = drop_some_percentage_from_with_in_year[chartink_title].format(index=index, week_count=int(week_count), percentage=percentage)
                 time_frame_list.append(f"{index_name}_{week_count}_{percentage}_per")
