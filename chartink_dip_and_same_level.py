@@ -326,20 +326,20 @@ if __name__ =="__main__":
     self_joined_df,self_joined_df_current = create_alert_excel_file(extra_details, excel_file=excel_file_name,alert_excel_file=alert_excel_file)
 
     index_details = {
-        "NIFTY 50" : "33492",
-        # "NIFTY 100": "33619",
-        "NIFTY NEXT 50" : "1116352",
-        "NIFTY 200": "46553",
-        "MIDCAP 50" : "136492",
-        "MIDCAP 100" : "1090585",
-        "MIDCAP 150" : "1090588",
-        "MIDCAP SELECT" : "1090579",
-        # "NIFTY 500" : "57960",
-        "NIFTY 500 multicap50:25:25" : "1090574",
-        # "NIFTY 500 multicap50:25:25" : "1090574",
-        "SMALLCAP 50" : "1090568",
-        "SMALLCAP 100" : "1090587",
-        # "SMALLCAP 250" : "1090572",
+        "NIFTY 50": ["33492", {"52": 0.50, "35": 0.60, "26": 0.70, "8": 0.80}]
+        # "NIFTY 100": ["33619", {"52": 0.50, "35": 0.60, "26": 0.70, "8": 0.80}]
+        "NIFTY NEXT 50" : ["1116352", {"52": 0.50, "35": 0.60, "26": 0.70, "8": 0.80}]
+        # "NIFTY 200": ["46553", {"52": 0.50, "35": 0.60, "26": 0.70, "8": 0.80}]
+        "MIDCAP 50" : ["136492", {"52": 0.50, "35": 0.60, "26": 0.70}]#, "8": 0.80}]
+        "MIDCAP 100" : ["1090585", {"52": 0.50, "35": 0.60, "26": 0.70}]#, "8": 0.80}]
+        # "MIDCAP 150" : ["1090588", {"52": 0.50, "35": 0.60, "26": 0.70, "8": 0.80}]
+        "MIDCAP SELECT" : ["1090579", {"52": 0.50, "35": 0.60, "26": 0.70}]# "8": 0.80}]
+        # "NIFTY 500" : ["57960", {"52": 0.50, "35": 0.60, "26": 0.70, "8": 0.80}]
+        # "NIFTY 500 multicap50:25:25" : ["1090574", {"52": 0.50, "35": 0.60, "26": 0.70, "8": 0.80}]
+        # "NIFTY 500 multicap50:25:25" : "1090574", {"52": 0.50, "35": 0.60, "26": 0.70, "8": 0.80}]
+        "SMALLCAP 50" : ["1090568", {"52": 0.50, "35": 0.55}]#, "26": 0.70, "8": 0.80}]
+        "SMALLCAP 100" : ["1090587", {"52": 0.50, "35": 0.50}]#, "26": 0.70, "8": 0.80}]
+        # "SMALLCAP 250" : ["1090572", {"52": 0.50, "35": 0.60, "26": 0.70, "8": 0.80}]
     }
 
     week_count_list = {
@@ -366,8 +366,10 @@ if __name__ =="__main__":
     base_code_list, title_list, time_frame_list = [], [], []
     extra_details = {}
     for index_name in index_details:
-        index = index_details[index_name]
-        for week_count, percentage in week_count_list.items():
+        # index = index_details[index_name]
+        index = index_details[index_name][0]
+        # for week_count, percentage in week_count_list.items():
+        for week_count,percentage in index_details[index_name][0].items():
             for chartink_title in drop_some_percentage_from_with_in_year:
                 base_code = drop_some_percentage_from_with_in_year[chartink_title].format(index=index, week_count=int(week_count), percentage=percentage)
                 time_frame_list.append(f"{index_name}_{week_count}_{percentage}_per")
@@ -457,10 +459,10 @@ if __name__ =="__main__":
     index_details = {
         "NIFTY 50" : "33492",
         # "NIFTY 100": "33619",
-        # "NIFTY NEXT 50" : "1116352",
+        "NIFTY NEXT 50" : "1116352",
         # "NIFTY 200": "46553",
         # "MIDCAP 50" : "136492",
-        # "MIDCAP 100" : "1090585",
+        "MIDCAP 100" : "1090585",
         # "MIDCAP 150" : "1090588",
         # "MIDCAP SELECT" : "1090579",
         # "NIFTY 500" : "57960",
@@ -497,7 +499,7 @@ if __name__ =="__main__":
     
     pdf_name = f"report/rsi_history_dip/pdf/rsi_history_dip_chartink_{date_time}"
     excel_file_name = f"report/rsi_history_dip/excel/rsi_history_dip.xlsx"
-    alert_excel_file = f"report/rsi_history_dip/alert/history_dip_alert_{date_time}.xlsx"
+    alert_excel_file = f"report/rsi_history_dip/alert/rsi_history_dip_alert_{date_time}.xlsx"
     
     
     base_code_list, title_list, time_frame_list = [], [], []
